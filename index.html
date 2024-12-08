@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حِرف</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f2e6f8, #f4f4f4);
+        }
+
+        header {
+            background-color: #89828a;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            max-width: 100px;
+        }
+        .logo-container {
+    text-align: center;
+}
+
+.logo-container img {
+    display: inline-block;
+}
+
+
+        .welcome-message {
+            text-align: center;
+            padding: 20px;
+            background-color: #f2e6f8;
+            color: #333;
+        }
+
+        .tab {
+            display: flex;
+            justify-content: center;
+            background-color: #5a4d6d;
+        }
+
+        .tab button {
+            background-color: #5a4d6d;
+            border: none;
+            color: white;
+            padding: 14px 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        .tab button:hover {
+            background-color: #786b91;
+        }
+
+        .tab button.active {
+            background-color: #443656;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .activities {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .activities div {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 30%;
+        }
+
+        .activities img {
+            width: 100%;
+            height: 300px; /* تكبير الصور */
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .activities button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #5a4d6d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .activities button:hover {
+            background-color: #786b91;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form .form-group {
+            margin-bottom: 15px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px; /* تقليل عرض التسمية */
+        }
+
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form textarea {
+            resize: none;
+        }
+
+        form button {
+            background-color: #5a4d6d;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #786b91;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .stars i {
+            font-size: 24px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .stars i.active {
+            color: #f5c518;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #5a4d6d;
+            color: white;
+        }
+
+        /* تعديل لون التبويبات */
+        .tab button {
+            background-color: #7a6e8a;
+        }
+
+        .tab button:hover {
+            background-color: #9b8b9e;
+        }
+
+        .tab button.active {
+            background-color: #5e4b6b;
+        }
+
+        /* تعديل التعديل على زر إغلاق في التسجيل */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #9b8b9e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* إضافة التنسيق لزر "البقاء في وضع التصفح" */
+        .stay-btn {
+            margin-top: 15px;
+            background-color: #5a4d6d;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .stay-btn:hover {
+            background-color: #786b91;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <a href="index.php">
+            <img src="image/logo.webp" alt="شعار حِرف" class="logo">
+        </a>
+    </div>
+</header>
+
+
+<div class="tab">
+    <button class="tablinks active" onclick="openTab(event, 'home')">الرئيسية</button>
+    <button class="tablinks" onclick="openTab(event, 'activities')">الأنشطة</button>
+    <button class="tablinks" onclick="openTab(event, 'register')">التسجيل</button>
+    <button class="tablinks" onclick="openTab(event, 'bookings')">   الحجز     </button>
+    <button class="tablinks" onclick="openTab(event, 'rating')">التقييم</button>
+    <button class="tablinks" onclick="openTab(event, 'contact')">اتصل بنا</button>
+</div>
+
+    <div id="home" class="tabcontent active" style="text-align: center; padding: 20px; background-color: #f9f9f9;">
+    <h2 style="font-size: 24px; color: #333; margin-bottom: 20px;">
+        "مرحبًا بك في <strong>حِرف</strong>"<br>
+        هنا تبدأ رحلتك في عالم الإبداع والمهارات الفنية<br>
+        ولأن الفن مو مجرد هواية، بل مساحة للتعبير، الشغف، والابتكار .
+    </h2>
+    <h3 style="font-size: 20px; color: #555; line-height: 1.8; margin: 0 auto; max-width: 600px;">
+        من خلال ورش عملنا المميزة، ستكتشف متعة تشكيل الفخار، صناعة الشموع، و تعيش تجربة الرسم لتعبّر عن أفكارك ومشاعرك.<br><br>
+        سواء كنت مبتدئ أو فنان، نحن هنا لنساعدك على تحويل أفكارك إلى قطع فنية تظهر طابع يعكس هويتك.<br><br>
+        اختر شغفك، واحجز الآن. <span style="color: #6a1b9a; font-weight: bold;">ننتظرك!</span>
+    </h3>
+</div>
+
+<div id="activities" class="tabcontent">
+    <h3>أنشطتنا</h3>
+    <div class="activities">
+        <div>
+            <img src="image/painting.jpeg" alt="ورشة الرسم">
+            <div>ورشة الرسم               -                   65 ريال</div>
+            <button onclick="openTab(event, 'bookings')">احجز النشاط</button>
+        </div>
+        <div>
+            <img src="image/pottery.jpeg" alt="ورشة الفخار">
+            <div>           تشكيل الفخار         -                      89 ريال</div>
+            <button onclick="openTab(event, 'bookings')">احجز النشاط</button>
+        </div>
+        <div>
+            <img src="image/candle.jpeg" alt="ورشة الشموع">
+                  <div>  صناعة الشموع
+                                      -48 ريال   </div>
+            <button onclick="openTab(event, 'bookings')">احجز النشاط</button>
+        </div>
+    </div>
+</div>
+<div id="register" class="tabcontent">
+
+
+    <!-- مكان عرض رسالة النجاح أو الخطأ -->
+    <div id="message"></div>
+
+    <!-- نموذج التسجيل -->
+    <form method="POST" action="register.php">
+        <div class="form-group">
+            <label for="name">الاسم:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">رقم الجوال:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <button type="submit">تسجيل</button>
+   
+
+       <button class="stay-btn" type="button" onclick="stayInBrowseMode()">البقاء في وضع التصفح</button>
+ </form>
+</div>
+<div id="bookings" class="tabcontent">
+    <h2 style="text-align: center;"> حجز ورشة فنية\النشاط </h2>
+    <form class="bookings-form" action="bookings.php" method="POST">
+        <label for="name">الاسم:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="phone">رقم الجوال:</label>
+        <input type="tel" id="phone" name="phone" required>
+        
+        <label for="date">تاريخ الحجز:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="activity">نوع النشاط:</label>
+        <select id="activity" name="activity" required>
+            <option value="1">ورشة الرسم - 65 ريال</option>
+            <option value="2">ورشة الفخار - 89 ريال</option>
+            <option value="3">ورشة الشموع - 49 ريال</option>
+        </select>
+
+        <button type="submit">إتمام الحجز</button>
+    </form>
+</div>
+ 
+</div>
+
+
+<div id="rating" class="tabcontent">
+
+    <form method="POST" action="feedback.php">
+        <div class="form-group">
+            <label>التقييم:</label>
+            <div class="stars">
+                <i class="star" onclick="setRating(1)">★</i>
+                <i class="star" onclick="setRating(2)">★</i>
+                <i class="star" onclick="setRating(3)">★</i>
+                <i class="star" onclick="setRating(4)">★</i>
+                <i class="star" onclick="setRating(5)">★</i>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="rating">التعليق:</label>
+            <textarea id="rating" name="rating" rows="4" placeholder="اكتب تعليقك هنا..."></textarea>
+        </div>
+        <button type="submit">إرسال التقييم</button>
+    </form>
+</div>
+
+<div id="contact" class="tabcontent">
+    
+    <form method="POST" action="contact.php">
+        <div class="form-group">
+            <label for="name">الاسم:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">الرسالة:</label>
+            <textarea id="message" name="message" rows="4" placeholder="اكتب رسالتك هنا..."></textarea>
+        </div>
+        <button type="submit">إرسال</button>
+
+    </form>
+</div>
+
+<footer>
+           <p>     للتواصل معنا عبر الإيميل: </p>
+
+</footer>
+
+<script>
+     // إرسال النموذج باستخدام AJAX
+    document.querySelector("form").addEventListener("submit", function(e) {
+        e.preventDefault(); // منع الإرسال التقليدي للنموذج
+
+        let formData = new FormData(this);
+
+        // إرسال البيانات إلى الملف PHP باستخدام AJAX
+        fetch("register.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            // عرض الرسالة الناتجة بعد التسجيل
+            document.getElementById("message").innerHTML = data;
+        })
+        .catch(error => {
+            document.getElementById("message").innerHTML = "حدث خطأ أثناء الاتصال بالسيرفر.";
+        });
+    });
+    // لعرض التبويب
+    function openTab(evt, tabName) {
+        const tabcontent = document.querySelectorAll(".tabcontent");
+        const tablinks = document.querySelectorAll(".tablinks");
+
+        tabcontent.forEach(content => content.classList.remove("active"));
+        tablinks.forEach(link => link.classList.remove("active"));
+
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    // إغلاق التبويب
+    function closeTab() {
+        document.querySelectorAll(".tabcontent").forEach(content => content.classList.remove("active"));
+        document.querySelector(".tablinks.active").classList.remove("active");
+        document.querySelector(".tablinks:first-of-type").classList.add("active");
+        document.getElementById("home").classList.add("active");
+    }
+
+    // زر "البقاء في وضع التصفح"
+    function stayInBrowseMode() {
+        closeTab();
+    }
+
+    // إعداد التقييم
+    function setRating(rating) {
+        const stars = document.querySelectorAll(".stars .star");
+        stars.forEach((star, index) => {
+            star.classList.toggle("active", index < rating);
+        });
+    }
+
+    // عرض تبويب التسجيل مباشرة عند التحميل
+    document.addEventListener("DOMContentLoaded", () => {
+        const registrationTab = document.querySelector('.tablinks[onclick="openTab(event, \'register\')"]');
+        registrationTab.click();
+    });
+</script>
+</body>
+</html>  
